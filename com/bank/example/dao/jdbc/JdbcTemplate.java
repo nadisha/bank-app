@@ -10,12 +10,14 @@ public class JdbcTemplate {
 	protected static Connection conn;
 	
 	static {
+		
 		String url = String.format("%s/%s", JDBCConfiguration.CONNECTION_URL, JDBCConfiguration.DB_NAME);
 		try {
+			Class.forName("com.mysql.jdbc.Driver");
 			if (conn == null) {
 				conn = DriverManager.getConnection(url, JDBCConfiguration.USERNAME, JDBCConfiguration.PASSWORD);
 			}
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println("ERROR => " + e.getMessage());
 		}		
 	}

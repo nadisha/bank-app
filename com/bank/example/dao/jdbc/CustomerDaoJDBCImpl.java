@@ -13,7 +13,7 @@ public class CustomerDaoJDBCImpl extends JdbcTemplate implements CustomerDao {
 
 	@Override
 	public Customer insert(Customer newCustomer) {
-		String insertQuery = " INSERT INTO users(first_name, last_name, dob, email, password, type)  VALUE(?,?,?,?,?,?);";	
+		String insertQuery = " INSERT INTO users(first_name, last_name, dob, email, password, type)  VALUES(?,?,?,?,?,?);";	
 		Customer customer = null;
 		try (
 			PreparedStatement preStmt = conn.prepareStatement(insertQuery)) {						
@@ -23,7 +23,7 @@ public class CustomerDaoJDBCImpl extends JdbcTemplate implements CustomerDao {
 			preStmt.setString(4, newCustomer.getEmail());
 			preStmt.setString(5, newCustomer.getPassword());
 			preStmt.setString(6, newCustomer.getType().name());			
-			int rows = preStmt.executeUpdate(insertQuery);
+			int rows = preStmt.executeUpdate();
 			if (rows > 0) {
 				customer = searchByEmail(newCustomer.getEmail());
 			}						
