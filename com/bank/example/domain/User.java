@@ -2,7 +2,7 @@ package com.bank.example.domain;
 
 import java.util.Date;
 
-public class User {
+public class User {//use both customer & user account common informations
 	private long id;
 	private String firstName;
 	private String lastName;
@@ -11,9 +11,9 @@ public class User {
 	private String password;
 	private UserType type;
 	public long getId() {
-		return id;
+		return id;//return type should be a field name return type ex:long 
 	}
-	public void setId(long id) {
+	public void setId(long id) { //pass the argument which is need set as user id
 		this.id = id;
 	}
 	public String getFirstName() {
