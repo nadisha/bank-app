@@ -17,7 +17,7 @@ public class LoginUI {
 		customerService = new CustomerServiceImpl();
 	}
 	
-	private boolean authenticate() throws AuthenticationFailException{
+	private String authenticate() throws AuthenticationFailException{
 		Customer customer = new Customer();
 		System.out.println("\n=========== 2. LOGIN ==============");
 		System.out.print("Username: ");
@@ -27,10 +27,10 @@ public class LoginUI {
 		// Pass the username and password and get customer details from the database
 		// Throw, AuthenticationFailException if the customer record is not found.
 		boolean isAuthenticated = customerService.authenticate(customer.getEmail(), customer.getPassword());
-		return isAuthenticated;
+		return customer.getEmail();
 	}
 	
-	public boolean showLogin() throws AuthenticationFailException{
+	public String showLogin() throws AuthenticationFailException{
 		return authenticate();
 	}
 }

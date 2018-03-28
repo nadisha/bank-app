@@ -28,6 +28,7 @@ public class RegistrationUI {
 	    
 	    System.out.print("Last Name: ");
 	    customer.setLastName(scanner.next());
+	    
 	    System.out.print(String.format("Date Of Birth (%s): ", ApplicationConfiguration.DATE_FORMAT));
 	    String dob = scanner.next();	    
 		customer.setDob(dob, ApplicationConfiguration.DATE_FORMAT);

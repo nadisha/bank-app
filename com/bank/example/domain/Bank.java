@@ -4,29 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
+	private long id;
 	private String name;
-	private long accountNoStartFrom;
-	private long accountNoEndFrom;
+	private String code;
+	private long initialAccountNumber;
 	private String address;
 	private List<Account> accounts;
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public long getAccountNoStartFrom() {
-		return accountNoStartFrom;
+	public long getInitialAccountNumber() {
+		return initialAccountNumber;
 	}
-	public void setAccountNoStartFrom(long accountNoStartFrom) {
-		this.accountNoStartFrom = accountNoStartFrom;
-	}
-	public long getAccountNoEndFrom() {
-		return accountNoEndFrom;
-	}
-	public void setAccountNoEndFrom(long accountNoEndFrom) {
-		this.accountNoEndFrom = accountNoEndFrom;
+	public void setInitialAccountNumber(long initialAccountNumber) {
+		this.initialAccountNumber = initialAccountNumber;
 	}
 	public String getAddress() {
 		return address;
@@ -42,5 +43,11 @@ public class Bank {
 	}
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

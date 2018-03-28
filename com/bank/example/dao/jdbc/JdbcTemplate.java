@@ -9,6 +9,7 @@ import com.bank.example.config.JDBCConfiguration;
 public class JdbcTemplate {
 	protected static Connection conn;
 	
+	// Static initializer
 	static {
 		
 		String url = String.format("%s/%s", JDBCConfiguration.CONNECTION_URL, JDBCConfiguration.DB_NAME);
@@ -21,6 +22,11 @@ public class JdbcTemplate {
 			System.out.println("ERROR => " + e.getMessage());
 		}		
 	}
+	
+	// Instance initializer
+//	{
+//		System.out.println("ssss");
+//	}
 	
 	public static void close() {
 		if (conn != null) {

@@ -2,7 +2,9 @@ package com.bank.example.ui.console;
 
 import java.util.Scanner;
 
+import com.bank.example.domain.Customer;
 import com.bank.example.exception.AlreadyExistException;
+import com.bank.example.exception.AuthenticationFailException;
 import com.bank.example.exception.DateException;
 import com.bank.example.ui.MainMenuItem;
 
@@ -52,23 +54,32 @@ public class MainMenuUI {
 		RegistrationUI register = new RegistrationUI(this.scanner);
 		boolean likeToLogin = register.showRegistrationForm();
 		if (likeToLogin) {
-			return login();
+			try {
+				String loginUserEmail = login();
+				dashboard(loginUserEmail);
+			} catch (AuthenticationFailException ex) {
+				System.out.println("ERROR => " + ex.getMessage());
+			}
 		} 
 		
 		return Boolean.TRUE;
 	}
 	
-	private boolean login() {
+	private String login() throws AuthenticationFailException{
 		LoginUI login = new LoginUI(this.scanner);
-		login.showLogin();
-		return Boolean.TRUE;
+		return login.showLogin();
+	}
+	
+	private void dashboard(String loginUserEmail) {
+		DashboardUI dashboard = new DashboardUI(scanner);
+		dashboard.loadDashboard(loginUserEmail);
 	}
 	
 	private void forgotPassword() {
-		
+		// TODO
 	}
 	
 	private void exit() {
-		
+		// TODO
 	}
 }

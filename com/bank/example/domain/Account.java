@@ -1,11 +1,19 @@
 package com.bank.example.domain;
 
 public class Account {
+	private long id;
 	private long accountNumber;
 	private Customer accountHolder;
 	private Bank bank;
 	private float balance;
 	private AccountType accountType;
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public long getAccountNumber() {
 		return accountNumber;
 	}
