@@ -4,6 +4,7 @@ import com.bank.example.dao.CustomerDao;
 import com.bank.example.dao.jdbc.CustomerDaoJDBCImpl;
 import com.bank.example.domain.Customer;
 import com.bank.example.exception.AlreadyExistException;
+import com.bank.example.exception.AuthenticationFailException;
 import com.bank.example.service.CustomerService;
 
 public class CustomerServiceImpl implements CustomerService {
@@ -32,6 +33,16 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer findByEmail(String email) {
 		return dao.searchByEmail(email);
+	}
+	
+	@Override
+	public boolean authenticate(String username, String password) throws AuthenticationFailException {
+		Customer customer = dao.searchByEmailAndPassword(username, password);
+		if (customer == null) {
+			throw new AuthenticationFailException("Incorrect username and password.");
+		}
+		
+		return username.equals(customer.getEmail()) && password.equals(customer.getPassword());
 	}
 
 }

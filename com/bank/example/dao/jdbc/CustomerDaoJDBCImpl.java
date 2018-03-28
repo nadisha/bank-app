@@ -58,25 +58,47 @@ public class CustomerDaoJDBCImpl extends JdbcTemplate implements CustomerDao {
 	@Override
 	public Customer searchByEmail(String email) {
 		String selectQuery = "SELECT id, first_name, last_name, dob, email, password FROM users WHERE email='" + email + "'";
+		Customer cus = null;
 		try (
 			Statement stmt =  conn.createStatement();
 			ResultSet rs = stmt.executeQuery(selectQuery)) {	
 			if (!rs.next()) {
 				return null;
 			}
-			Customer cus = new Customer();
+			cus = new Customer();
 			cus.setId(rs.getLong("id"));
 			cus.setFirstName(rs.getString("first_name"));
 			cus.setLastName(rs.getString("last_name"));
 			cus.setDob(rs.getDate("dob"));
 			cus.setEmail(rs.getString("email"));
-			cus.setPassword(rs.getString("password"));
-			return cus;
+			cus.setPassword(rs.getString("password"));			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-		return null;
+		return cus;
+	}
+	
+	@Override
+	public Customer searchByEmailAndPassword(String email, String password) {
+		String selectQuery = "SELECT id, email, password FROM users WHERE email='" + email + "' AND password='" + password + "'";
+		Customer cus = null;
+		try (
+			Statement stmt =  conn.createStatement();
+			ResultSet rs = stmt.executeQuery(selectQuery)) {	
+			if (!rs.next()) {
+				return null;
+			}
+			cus = new Customer();
+			cus.setId(rs.getLong("id"));
+			cus.setEmail(rs.getString("email"));
+			cus.setPassword(rs.getString("password"));
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return cus;
 	}
 
 }

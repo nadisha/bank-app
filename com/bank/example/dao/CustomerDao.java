@@ -8,4 +8,6 @@ public interface CustomerDao {
 	Customer searchById(long id);
 	
 	Customer searchByEmail(String email);
+	
+	Customer searchByEmailAndPassword(String email, String password);
 }
