@@ -24,14 +24,14 @@ public class AccountDaoJDBCImpl extends JdbcTemplate implements AccountDao {
 				account.setId(rs.getInt("id"));
 
 			}
-				Customer cus = new Customer();
-				cus.setId(rs.getLong("id"));
-				cus.setFirstName(rs.getString("first_name"));
-				cus.setLastName(rs.getString("last_name"));
-				cus.setDob(rs.getDate("dob"));
-				cus.setEmail(rs.getString("email"));
-				cus.setPassword(rs.getString("password"));
-				return cus;
+//				Customer cus = new Customer();
+//				cus.setId(rs.getLong("id"));
+//				cus.setFirstName(rs.getString("first_name"));
+//				cus.setLastName(rs.getString("last_name"));
+//				cus.setDob(rs.getDate("dob"));
+//				cus.setEmail(rs.getString("email"));
+//				cus.setPassword(rs.getString("password"));
+//				return cus;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
